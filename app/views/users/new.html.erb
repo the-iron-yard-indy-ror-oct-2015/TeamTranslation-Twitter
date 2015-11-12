@@ -11,9 +11,14 @@
       </ul>
     <% end %>
 
-    <%= f.text_field :email, placeholder: "email" %>
-    <%= f.password_field :password, placeholder: "password" %>
-    <%= f.password_field :password_confirmation, placeholder: "password" %>
+
+    <%= f.text_field :name, placeholder: "Your Name" %>
+    <%= f.text_field :email, placeholder: "Email" %>
+    <%= f.text_field :username, placeholder: "Username" %>
+    <%= f.password_field :password, placeholder: "Password" %>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+    <br>
     <%= f.submit "Create Account" %>
   <% end %>
+<br>
 </div>
