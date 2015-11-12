@@ -7,8 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
-</body>
-</html>
+  <body>
+      <header>
+          <div class="wrapper">
+              <img src="images/yelling.jpg">
+              <span>RAGE RANT</span>
+          </div>
+      </header>
+      <div id="content">
+          <div class="wrapper">
+              <% flash.each do |name, msg| %>
+                  <%= content_tag :div, msg, class: "flash #{name}" %>
+              <% end %>
+              <%= yield %>
+          </div>
+      </div>
+      <footer>
+          <div class="wrapper">
+              Rage Rant - Tell us how you really feel!
+          </div>
+      </footer>
+  </body>
+  </html>
