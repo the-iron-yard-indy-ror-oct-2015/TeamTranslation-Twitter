@@ -13,6 +13,16 @@
               <img src="images/yelling.jpg">
               <span>RAGE RANT</span>
           </div>
+          <% if current_user%>
+          <%= link_to "Log out", sessions_destroy_path %>
+          <%else%>
+            <%= form_tag sessions_create_path do %>
+              <%= text_field_tag :username, nil, placeholder: "username" %>
+              <%= password_field_tag :password, nil, placeholder: "password" %>
+              <%= submit_tag "Log In"%>
+              <%end%>
+          <%end%>
+              
       </header>
       <div id="content">
           <div class="wrapper">
