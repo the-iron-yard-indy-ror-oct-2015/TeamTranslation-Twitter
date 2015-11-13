@@ -12,25 +12,24 @@
 
 <div class="panel left">
     <h1>Your Rage Page</h1>
+    <br>
+    <h2>Your Rants</h2>
     <div>
-      <% @users.each do |user| %>
-        <span><%= user.name %></span> @<%= user.username %>
+        <span><%= @user.name %></span> @<%= @user.username %>
         <p>
-        <%= user.rants %> Rants
+        <%= @user.rants %>
         <span> Followers</span>
         <span> Following</span>
         </p>
     </div>
 </div>
+
 <div class="panel left">
-    <h1>Your Rants</h1>
-    <div>
-      <span> <%= user.name %></span>
+    <% @users.each do |user| %>
       <%= user.username%>
-        <% end %>
-        <% @rants.each do |rant| %>
-      <span><%= time_ago_in_words(rant.created_at) %></span>
-        <p> <%= rant.content %></p>
-    </div>
+    <% end %>
+    <% @rants.each do |rant| %>
+      <%= time_ago_in_words(rant.created_at) %>
+      <p><%= rant.content %></p>
     <% end %>
 </div>
