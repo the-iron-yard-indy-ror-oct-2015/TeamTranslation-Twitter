@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @rants = Rant.all
+    @rant = Rant.new
   end
 
   def new
