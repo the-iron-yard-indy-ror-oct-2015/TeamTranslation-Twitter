@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to rants_path, notice: "You've logged out. (And hopefully cooled off)"
+    redirect_to rants_path, notice: "You've logged out. (And hopefully cooled off a bit)"
   end
 
   private
