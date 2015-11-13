@@ -1,40 +1,40 @@
-<div>
-  <h1> User Rants</h1>
-  <% if current_user %>
+<% if current_user %>
   <div class="panel right">
-      <h1>Rage Rant?</h1>
-      <p>
+    <h1>Rant your Rage</h1>
       <%= bootstrap_form_for @rant do |f|%>
-        <%= f.text_area :content%>
-        <%= f.submit "Rant!" %>
+      <%= f.text_area :content%>
+      <%= f.submit "Rant!", method: :post %>
       <% end %>
-          <input type="submit" >
-      </p>
   </div>
-  <% end %>
-  <div class="panel left">
-      <h1>Your Rage Page</h1>
-      <div>
-        <% @users.each do |user| %>
-          <span><%= user.name %></span> @<%= user.username %>
-          <p>
-          <%= user.rants %> Rants
-          <span> Followers</span>
-          <span> Following</span>
-          </p>
+<% end %>
 
-      </div>
-  </div>
-  <div class="panel left">
-      <h1>Your Rants</h1>
-      <div>
-        <span> <%= user.name %></span>
-        <%= user.username%>
-          <% end %>
-          <% @rants.each do |rant| %>
-        <span><%= time_ago_in_words(rant.created_at) %></span>
-          <p> <%= rant.content %></p>
-      </div>
+<h1>Your Rage Page</h1>
+
+<div class="panel left">
+  <h1>Your Rants</h1>
+    <% @rants.reverse.each do |rant| %>
+      <%= rant.content %>
+      <%= time_ago_in_words(rant.created_at) %>
+      <%= rant.content %>
+      <br>
+      <br>
       <% end %>
+</div>
+
+<h1>Other Rants</h1>
+
+<div class="panel left">
+  <div>
+    <% @users.each do |user| %>
+      <%= user.name %> @<%= user.username %>
+      <br>
+      <%= user.rants%>
+      <br>
+      Rants
+      Followers
+      Following
+      <br>
+      <br>
+    <%end%>
   </div>
 </div>

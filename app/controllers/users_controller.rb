@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to users_path
+    @rant = Rant.new
+    @rant.save
+    redirect_to users_path, method: :post
   end
 
 
