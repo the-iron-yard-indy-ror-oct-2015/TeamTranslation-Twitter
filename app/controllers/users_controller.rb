@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @rants= Rant.all
+    @rant = Rant.new
     @users = User.all
   end
 

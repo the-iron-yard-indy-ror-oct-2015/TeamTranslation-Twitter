@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :rants
   get 'sessions/new'
   post 'sessions/create'
-  get 'sessions/destroy'
+  delete 'sessions/destroy'
   resources :after_signup
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
     root 'rants#index'
+
 
 
   # Example of regular route:

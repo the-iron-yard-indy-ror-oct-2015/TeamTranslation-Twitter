@@ -2,7 +2,7 @@
   <div class="panel right">
     <h1>Rage Rant?</h1>
     <p>
-    <%= bootstrap_form_for @rant do |f|%>
+    <%= form_for @rant do |f|%>
       <%= f.text_area :content, :class => "ranttext"%>
       <%= f.submit "Rant!" %>
       <% end %>

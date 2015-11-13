@@ -16,15 +16,15 @@
       <div class = "col-xs-12 col-md-2">
         <% if @current_user%>
           <h6> Welcome, <%= @current_user.name %></h6>
-          <%= link_to "Log out",  user_session_path(@current_user),method: :delete, :class => "btn btn-medium btn-primary" %>
-          <%else%>
-            <%= form_tag sessions_create_path do %>
-              <%= text_field_tag "session[username]", nil, placeholder: "username" %>
-              <%= password_field_tag "session[password]", nil,  placeholder: "password" %>
-              <%= submit_tag "Log In"%>
-              <%end%>
-              <%= link_to "Sign Up for an Account", new_user_path, :class => "btn btn-medium btn-primary" %>
-          <%end%>
+          <%= link_to "Log out",  sessions_destroy_path(@current_user),method: :delete, :class => "btn btn-medium btn-primary" %>
+        <%else%>
+          <%= form_tag sessions_create_path do %>
+            <%= text_field_tag "session[username]", nil, placeholder: "username" %>
+            <%= password_field_tag "session[password]", nil,  placeholder: "password" %>
+            <%= submit_tag "Log In"%>
+            <%end%>
+            <%= link_to "Sign Up for an Account", new_user_path, :class => "btn btn-medium btn-primary" %>
+        <%end%>
       </div>
       </header>
       <div>
