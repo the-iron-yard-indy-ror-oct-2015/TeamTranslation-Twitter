@@ -1,6 +1,6 @@
 <% if current_user %>
 <div class="panel right">
-    <h1>New to Rage Rant?</h1>
+    <h1>Rage Rant?</h1>
     <p>
     <%= bootstrap_form_for @rant do |f|%>
       <%= f.text_area :content, class="ranttext"%>
@@ -13,11 +13,11 @@
 <div class="panel left">
     <h1>Your Rage Page</h1>
     <div>
-        <span class="name"><%= @user.name %></span> @<%= @user.username %>
+        <span><%= @user.name %></span> @<%= @user.username %>
         <p>
         <%= @user.rants.size %> Rants
-        <span class="spacing">XX Followers</span>
-        <span class="spacing">XX Following</span>
+        <span> Followers</span>
+        <span> Following</span>
         </p>
     </div>
 </div>
@@ -26,8 +26,8 @@
     <% @users.rants.each do |rant| %>
     <div>
       <span> <%= @user.name %></span>
-      <%=@user.username%>
-      <span><%= time_ago_in_words(rant.creatd_at) %></span>
+      <%= @user.username%>
+      <span><%= time_ago_in_words(rant.created_at) %></span>
         <p> <%= rant.content %></p>
     </div>
     <% end %>

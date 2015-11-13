@@ -1,0 +1,40 @@
+<div>
+  <h1> User Rants</h1>
+  <% if current_user %>
+  <div class="panel right">
+      <h1>Rage Rant?</h1>
+      <p>
+      <%= bootstrap_form_for @rant do |f|%>
+        <%= f.text_area :content%>
+        <%= f.submit "Rant!" %>
+      <% end %>
+          <input type="submit" >
+      </p>
+  </div>
+  <% end %>
+  <div class="panel left">
+      <h1>Your Rage Page</h1>
+      <div>
+        <% @users.each do |user| %>
+          <span><%= user.name %></span> @<%= user.username %>
+          <p>
+          <%= user.rants %> Rants
+          <span> Followers</span>
+          <span> Following</span>
+          </p>
+
+      </div>
+  </div>
+  <div class="panel left">
+      <h1>Your Rants</h1>
+      <div>
+        <span> <%= user.name %></span>
+        <%= user.username%>
+          <% end %>
+          <% @rant.each do |rant| %>
+        <span><%= time_ago_in_words(rant.created_at) %></span>
+          <p> <%= rant.content %></p>
+      </div>
+      <% end %>
+  </div>
+</div>

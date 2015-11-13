@@ -4,9 +4,10 @@ source 'https://rubygems.org'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap_form'
 gem 'authlogic'
-
-
-
+gem "acts_as_follower"
+gem 'kaminari'
+gem 'wicked'
+gem  'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
