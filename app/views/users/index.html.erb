@@ -31,7 +31,7 @@
         <span> <%= user.name %></span>
         <%= user.username%>
           <% end %>
-          <% @rant.each do |rant| %>
+          <% @rants.each do |rant| %>
         <span><%= time_ago_in_words(rant.created_at) %></span>
           <p> <%= rant.content %></p>
       </div>
