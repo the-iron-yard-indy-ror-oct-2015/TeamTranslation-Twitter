@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   get 'sessions/new'
   post 'sessions/create'
   get 'sessions/destroy'
-
+  resources :after_signup
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-    root 'users#new'
+    root 'rants#index'
 
 
   # Example of regular route:
