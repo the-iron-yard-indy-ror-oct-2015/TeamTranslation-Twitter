@@ -15,7 +15,7 @@
           </div>
       <div class = "col-xs-12 col-md-2">
         <% if @current_user%>
-          <h6> Welcome, <%= @current_user.name %></h6>
+          <h5><%= @current_user.name %> is logged in and ready to rage!</h5>
           <%= link_to "Log out",  sessions_destroy_path(@current_user),method: :delete, :class => "btn btn-medium btn-primary" %>
         <%else%>
           <%= form_tag sessions_create_path do %>
