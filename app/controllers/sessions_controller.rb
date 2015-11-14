@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     @session = UserSession.new(session_params)
     if @session.save
-      redirect_to user_path, notice: "You're logged in. Rant away!"
+      redirect_to users_path, notice: "You're logged in. Rant away!"
     else
       flash[:error] = "Wrong Username or Password."
       redirect_to rants_path
@@ -18,13 +18,14 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    current_user_session.destroy
     redirect_to rants_path, notice: "You've logged out. (And hopefully cooled off a bit)"
   end
 
   private
 
   def session_params
-    params.require(:session).permit(:user_id)
+    params.require(:session).permit( :username, :password)
   end
 
 end
