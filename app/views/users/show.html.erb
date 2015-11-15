@@ -13,23 +13,21 @@
 <div class="panel left">
     <h1>Your Rage Page</h1>
     <br>
-    <h2>Your Rants</h2>
+    <h3>Your Rants</h3>
     <div>
-        <span><%= @user.name %></span> @<%= @user.username %>
         <p>
-        <%= @user.rant %>
-        <span> Followers</span>
-        <span> Following</span>
+          <% @rants.each do |rant| %>
+          <br><span><%= rant.user.name %> @ <%=rant.user.username%></span><br>
+          <br>
+            <span><%= rant.content %></span><br>
+            <br>
+            <span>Posted <%= time_ago_in_words(rant.created_at) %> ago</span>
+            <br>
+            <br>
+            <% end %>
+        <span><%= @user.followers.count %> Followers</span>
+        <span><%= @user.followeds.count %> Following</span>
         </p>
     </div>
 </div>
-
-<div class="panel left">
-    <% @users.each do |user| %>
-      <%= user.username%>
-    <% end %>
-    <% @rants.each do |rant| %>
-    <span> Posted <%= time_ago_in_words(rant.created_at) %></span>
-      <p><%= rant.content %></p>
-    <% end %>
-</div>
+<%= paginate @rants %>
