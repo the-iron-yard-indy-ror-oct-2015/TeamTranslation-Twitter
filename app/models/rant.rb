@@ -1,8 +1,7 @@
 class Rant < ActiveRecord::Base
   #self.default_scope order: 'created_at DESC'
-  attr_accessor :content, :user_id
   belongs_to :user
-  validates :content, length: {maximum: 140}
+  validates :content, length: {maximum: 170}
   acts_as_followable
 
   def self.timeline(user)

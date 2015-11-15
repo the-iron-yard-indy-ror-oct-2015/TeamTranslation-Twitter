@@ -1,1 +1,10 @@
 <h1>Public Rants </h1>
+<% @rants.each do |rant| %>
+<% @users.each do |user| %>
+  <br><%= user.name %> @ <%=user.username%><br>
+  <p><%= rant.content %></p>
+  <span>Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
+  <% end %>
+<% end %>
+
+<%= paginate @rants %>

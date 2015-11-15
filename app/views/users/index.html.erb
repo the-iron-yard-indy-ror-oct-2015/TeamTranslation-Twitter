@@ -2,20 +2,19 @@
   <div class="panel right">
     <h1>Rant your Rage</h1>
       <%= bootstrap_form_for @rant do |f|%>
-      <%= f.text_area :content%>
+    <div class="control-group">
+      <%= f.text_area :content, skip_label:true, :size => "100x5", :placeholder => "Rant away..." %>
       <%= f.submit "Rant!", method: :post %>
+    </div>
       <% end %>
   </div>
 <% end %>
 
-<h1>Your Rage Page</h1>
-
 <div class="panel left">
-  <h1>Your Rants</h1>
+  <h4>Your Rants</h4>
     <% @rants.reverse.each do |rant| %>
-      <%= rant.content %>
-      <%= time_ago_in_words(rant.created_at) %>
-      <%= rant.content %>
+      <span><%= rant.content %></span><br>
+      <span>Posted <%= time_ago_in_words(rant.created_at) %> ago</span>
       <br>
       <br>
       <% end %>
@@ -25,16 +24,18 @@
 
 <div class="panel left">
   <div>
+    <% @rants.reverse.each do |r| %>
     <% @users.each do |user| %>
       <%= user.name %> @<%= user.username %>
       <br>
-      <%= user.rants%>
+      <%= r.content%>
       <br>
       Rants
       Followers
       Following
       <br>
       <br>
+      <% end %>
     <%end%>
   </div>
 </div>

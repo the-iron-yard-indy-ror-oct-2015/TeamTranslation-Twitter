@@ -3,7 +3,7 @@
     <h1>Rage Rant?</h1>
     <p>
     <%= form_for @rant do |f|%>
-      <%= f.text_area :content, :class => "ranttext"%>
+      <%= f.text_area :content,skip_label:true, :size=> "100x5"%>
       <%= f.submit "Rant!" %>
       <% end %>
     </p>
@@ -17,7 +17,7 @@
     <div>
         <span><%= @user.name %></span> @<%= @user.username %>
         <p>
-        <%= @user.rants %>
+        <%= @user.rant %>
         <span> Followers</span>
         <span> Following</span>
         </p>
@@ -29,7 +29,7 @@
       <%= user.username%>
     <% end %>
     <% @rants.each do |rant| %>
-      <%= time_ago_in_words(rant.created_at) %>
+    <span> Posted <%= time_ago_in_words(rant.created_at) %></span>
       <p><%= rant.content %></p>
     <% end %>
 </div>
