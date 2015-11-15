@@ -5,7 +5,7 @@
 
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-10.times do
+90.times do
   user=User.new
   user.email= Faker::Internet.email
   user.name = Faker::Name.name
@@ -13,7 +13,7 @@
   user.password = Faker::Internet.password
   user.password_confirmation = user.password
   user.save!
-  50.times do
+  6.times do
     rant = Rant.new
     rant.content = Faker::Lorem.sentence
     rant.user = user

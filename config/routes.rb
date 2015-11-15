@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :relationships
   resources :rants
   get 'sessions/new'
   post 'sessions/create'

@@ -3,7 +3,7 @@ class RantsController < ApplicationController
   before_action :require_user, only: [:new,:create, :update, :destroy]
 
   def index
-    @rants = Rant.order("created_at DESC").page(params[:page] || 1).per(10)
+    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
     @users=User.all
   end
@@ -18,7 +18,7 @@ class RantsController < ApplicationController
 
   def create
     @rant = Rant.new(rant_params)
-    @rant.user_id= current_user
+    @rant.user= current_user
     if @rant.save
         redirect_to users_path
     else

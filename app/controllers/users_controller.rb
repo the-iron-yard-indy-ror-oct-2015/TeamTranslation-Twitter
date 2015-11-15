@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @rants = Rant.all
+    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
   end
 
