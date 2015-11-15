@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @rants = Rant.all
+    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
   end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def user_params
-    params.require(:user).permit(:username, :email, :password, :name, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :name, :password_confirmation, :content)
   end
 
 end

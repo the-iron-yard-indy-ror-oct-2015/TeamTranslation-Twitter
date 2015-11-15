@@ -1,9 +1,11 @@
 class RantsController < ApplicationController
-
+  before_action :set_rant, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:new,:create, :update, :destroy]
 
   def index
-    @rants = Rant.all
+    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
+    @users=User.all
   end
 
   def show
@@ -16,9 +18,9 @@ class RantsController < ApplicationController
 
   def create
     @rant = Rant.new(rant_params)
-    @rant.user_id= current_user
+    @rant.user= current_user
     if @rant.save
-        redirect_to root_path
+        redirect_to users_path
     else
       flash[:alert]= "There has been a problem saving your rant! Sorry."
       render :new
@@ -27,7 +29,7 @@ class RantsController < ApplicationController
 
   def update
     if @rant.update(rant_params)
-      redirect_to root_path, [:alert] => 'Rant was successfully update.'
+      redirect_to users_path, [:alert] => 'Rant was successfully update.'
     else
       render :edit
     end
