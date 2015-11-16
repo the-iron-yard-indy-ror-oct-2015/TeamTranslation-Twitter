@@ -42,8 +42,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @rant = Rant.new
-    @users = User.all
-    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
+    @rants = @user.rants.order("created_at DESC").page(params[:page] || 1).per(10)
   end
 
   def destroy

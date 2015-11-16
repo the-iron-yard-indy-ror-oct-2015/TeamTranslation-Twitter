@@ -1,9 +1,9 @@
 <% if current_user %>
   <div class="panel right">
-    <h1>Rage Rant?</h1>
+    <h1>Rant your Rage</h1>
     <p>
     <%= form_for @rant do |f|%>
-      <%= f.text_area :content,skip_label:true, :size=> "100x5"%>
+      <%= f.text_area :content,skip_label:true, :size=> "100x5", :placeholder => "Rant away..."%><br>
       <%= f.submit "Rant!" %>
       <% end %>
     </p>
@@ -16,7 +16,7 @@
     <h3>Your Rants</h3>
     <div>
         <p>
-          <% @rants.each do |rant| %>
+          <% @user.rants.each do |rant| %>
           <br><span><%= rant.user.name %> @ <%=rant.user.username%></span><br>
           <br>
             <span><%= rant.content %></span><br>
