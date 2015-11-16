@@ -22,8 +22,7 @@
     <div>
       <h4>Profile Info</h4>
         <p><%=@user.name %> has made <%= @user.rants.size %> rants</p>
-        <span><%= @user.followers.count %> Followers</span>
-        <span><%= @user.followeds.count %> Following</span>
+        <p><%= @user.followers.count %> Followers <%= @user.followeds.count %> Following</p>
         <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
         <br>
     </div><br>
@@ -32,10 +31,8 @@
     <% @rants.each do |rant| %>
       <br>
       <br>
-      <span><%= rant.user.name %> @ <%=rant.user.username%></span><span>   Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
-      <br>
-      <span><%= rant.content %></span><br>
-      <br>
+      <p><a href="<%= user_path rant.user %>"><%= rant.user.name %></a> @ <%=rant.user.username%>   Posted <%= time_ago_in_words(rant.created_at) %> ago</p>
+      <p><%= rant.content %></p>
       <span><%= rant.user.followers.count %> Followers</span>
       <span><%= rant.user.followeds.count %> Following</span><br>
 

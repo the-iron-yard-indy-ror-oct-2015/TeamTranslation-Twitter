@@ -37,8 +37,7 @@
     <% @rants.each do |rant| %>
       <br><%= rant.user.name %> @ <%=rant.user.username%><span>   Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
       <p><%= rant.content %></p>
-      <span><%= rant.user.followers.count %> Followers</span>
-      <span><%= rant.user.followeds.count %> Following</span><br>
+      <p><%= rant.user.followers.count %> Followers <%= rant.user.followeds.count %> Following</p><br>
         <br>
     <% end %>
   </div>

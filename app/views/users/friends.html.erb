@@ -2,8 +2,8 @@
 <div>
     <h1>Rant your Rage</h1>
     <p>
-    <%= form_for @rant do |f| %>
-        <%= f.text_area :content %>
+    <%= bootstrap_form_for @rant do |f| %>
+        <%= f.text_area :content, skip_label:true, :size => "100x5"%>
         <%= f.submit "Rant!" %>
     <% end %>
     </p>
@@ -13,10 +13,23 @@
     <h1>Friends' Rants</h1>
     <% @rants.each do |r| %>
         <div>
-            <a href="<%= user_path r.user %>"><%= r.user.name %></a>
-            @<%= r.user.username %>
-            <span><%= time_ago_in_words(r.created_at) %></span>
+            <p><a href="<%= user_path r.user %>"><%= r.user.name %></a>
+            @<%= r.user.username %> Posted <%= time_ago_in_words(r.created_at) %></p>
             <p> <%= r.content %> </p>
+            <p><%= r.user.followers.count %> Followers
+            <%= r.user.followeds.count %> Following</p><br>
+            <% if current_user && r.user != current_user %>
+              <% if current_user.following? r.user %>
+                <%= form_tag relationship_path, method: :delete do %>
+                  <%= submit_tag "Unfollow" %>
+                  <% end %>
+              <% else %>
+                <%= bootstrap_form_for @relationship do %>
+                  <%= hidden_field_tag :followed_id, r.user.id %>
+                  <%= submit_tag "Follow" %>
+                  <% end %>
+              <% end %>
+            <% end %>
         </div>
     <% end %>
 </div>

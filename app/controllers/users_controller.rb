@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :require_no_user, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   def index
-    @user = User.find(params[:id])
+    @user=current_user
     @users = User.all
     @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
@@ -60,6 +60,7 @@ class UsersController < ApplicationController
   end
 
   def friends
+    @user = current_user
     @rant= Rant.new
     @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
   end
