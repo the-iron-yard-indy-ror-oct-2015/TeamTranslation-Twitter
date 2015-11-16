@@ -29,30 +29,28 @@
     </div><br>
 
     <h3>Your Rants</h3>
-    <div>
-        <p>
-          <% @rants.each do |rant| %>
-            <br><br><span><%= rant.user.name %> @ <%=rant.user.username%></span><span>   Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
-            <br>
-            <span><%= rant.content %></span><br>
-            <br>
-            <span><%= rant.user.followers.count %> Followers</span>
-            <span><%= rant.user.followeds.count %> Following</span><br>
+    <% @rants.each do |rant| %>
+      <br><br><span><%= rant.user.name %> @ <%=rant.user.username%></span><span>   Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
+      <br>
+      <span><%= rant.content %></span><br>
+      <br>
+      <span><%= rant.user.followers.count %> Followers</span>
+      <span><%= rant.user.followeds.count %> Following</span><br>
 
-        <% if current_user and @user != current_user %>
-            <% if current_user.following? @user %>
-              <span> <%= form_tag relationship_path, method: :delete do %>
-                    <%= submit_tag "Unfollow" %></span>
-                <% end %>
-            <% else %>
-                <%= form_for @relationship do %>
-                    <%= hidden_field_tag :followed_id, @user.id %>
-                    <%= submit_tag "Follow" %>
-                <% end %>
+      <% if current_user && @user != current_user %>
+        <% if current_user.following? @user %>
+          <%= form_tag relationship_path, method: :delete do %>
+            <%= submit_tag "Unfollow" %>
+            <% end %>
+        <% else %>
+          <%= form_for @relationship do %>
+            <%= hidden_field_tag :followed_id, @user.id %>
+            <%= submit_tag "Follow" %>
             <% end %>
         <% end %>
-          <% end %><br>
-        </p>
-    </div>
+      <% end %>
+    <% end %>
+    <br>
+    
 </div>
 <%= paginate @rants %>

@@ -26,9 +26,9 @@
 
 <div class = "panel right">
   <h4>Profile Info</h4>
-    <span><%= current_user.rants.size %> Rants</span>
-    <span><%= current_user.followers.count %> Followers</span>
-    <span><%= current_user.followeds.count %> Following</span><br>
+    <span><%= @user.rants.size %> Rants</span>
+    <span><%= @user.followers.count %> Followers</span>
+    <span><%= @user.followeds.count %> Following</span><br>
 </div>
 
 <h1>Recent Rants</h1>

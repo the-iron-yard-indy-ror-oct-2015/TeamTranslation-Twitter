@@ -4,9 +4,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   :timeline
   def index
+    @user = User.find(params[:id])
     @users = User.all
     @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
+    @relationship = Relationship.where(follower_id: current_user.id,
+    followed_id: @user.id).first_or_initialize if current_user
   end
 
   def new

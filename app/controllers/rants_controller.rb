@@ -6,6 +6,7 @@ class RantsController < ApplicationController
     @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
     @rant = Rant.new
     @users=User.all
+    
   end
 
   def show
