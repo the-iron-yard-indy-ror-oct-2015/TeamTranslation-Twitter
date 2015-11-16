@@ -1,0 +1,24 @@
+<% if current_user %>
+<div>
+    <h1>Rant your Rage</h1>
+    <p>
+    <%= form_for @rant do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit "Rant!" %>
+    <% end %>
+    </p>
+</div>
+<% end %>
+<div class="panel left">
+    <h1>Friends' Rants</h1>
+    <% @rants.each do |r| %>
+        <div>
+            <a href="<%= user_path r.user %>">
+            <span><%= r.user.name %></span>
+            </a>
+            @<%= r.user.username %>
+            <span><%= time_ago_in_words(r.created_at) %></span>
+            <p> <%= r.content %> </p>
+        </div>
+    <% end %>
+</div>
