@@ -2,6 +2,8 @@
 <% @rants.each do |rant| %>
   <br><%= rant.user.name %> @ <%=rant.user.username%><br>
   <p><%= rant.content %></p>
-  <span>Posted <%= time_ago_in_words(rant.created_at) %> ago</span><br>
-<% end %>
+  <span>Posted <%= time_ago_in_words(rant.created_at) %> ago</span>
+  <span><%= rant.user.followers.count %>   Followers</span>
+  <span><%= rant.user.followeds.count %>   Following</span><br><br>
+<% end %><br>
 <%= paginate @rants %>

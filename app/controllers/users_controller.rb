@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:destroy]
   before_action :require_no_user, only: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  :timeline
   def index
     @users = User.all
     @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
@@ -10,7 +10,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user =User.new
+    if current_user
+      redirect_to friends_path
+    else
+      @user =User.new
+    end
   end
 
   def update
@@ -41,14 +45,21 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @rants= Rant.all
+    @users= User.all
     @rant = Rant.new
-    @users = User.all
+    @rants = @user.rants.order("created_at DESC").page(params[:page] || 1).per(10)
+    @relationship = Relationship.where(follower_id: current_user.id,
+    followed_id: @user.id).first_or_initialize if current_user
   end
 
   def destroy
     @user.destroy
       redirect_to root_path
+  end
+
+  def friends
+    @rant= Rant.new
+    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
   end
 
   private
