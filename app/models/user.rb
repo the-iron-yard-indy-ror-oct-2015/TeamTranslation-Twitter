@@ -16,4 +16,11 @@ class User < ActiveRecord::Base
   def follow user
     Relationship.create follower_id: self.id, followed_id: user.id
   end
+
+  def relate(user)
+    Relationship.where(follower_id: self.id,
+    followed_id: user.id).first_or_initialize
+  end
+
+
 end

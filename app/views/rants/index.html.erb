@@ -11,6 +11,18 @@
   <br>
   <br>
   <br>
+  <% if current_user && rant.user != current_user %>
+    <% if current_user.following? rant.user %>
+      <%= form_tag relationship_path(current_user.relate(rant.user)), method: :delete do %>
+        <%= submit_tag "Unfollow" %>
+        <% end %>
+    <% else %>
+      <%= form_for current_user.relate(rant.user) do %>
+        <%= hidden_field_tag :followed_id, rant.user.id %>
+        <%= submit_tag "Follow" %>
+        <% end %>
+    <% end %>
+  <% end %>
 
 
 <% end %>
