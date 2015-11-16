@@ -13,9 +13,7 @@
     <h1>Friends' Rants</h1>
     <% @rants.each do |r| %>
         <div>
-            <a href="<%= user_path r.user %>">
-            <span><%= r.user.name %></span>
-            </a>
+            <a href="<%= user_path r.user %>"><%= r.user.name %></a>
             @<%= r.user.username %>
             <span><%= time_ago_in_words(r.created_at) %></span>
             <p> <%= r.content %> </p>
