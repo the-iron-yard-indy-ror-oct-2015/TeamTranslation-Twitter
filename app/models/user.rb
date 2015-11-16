@@ -22,5 +22,8 @@ class User < ActiveRecord::Base
     followed_id: user.id).first_or_initialize
   end
 
+  def all_following
+    followeds
+  end
 
 end

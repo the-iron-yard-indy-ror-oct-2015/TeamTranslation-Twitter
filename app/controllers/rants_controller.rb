@@ -3,10 +3,14 @@ class RantsController < ApplicationController
   before_action :require_user, only: [:new,:create, :update, :destroy]
 
   def index
-    @rants = Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
+    if current_user
+    @rants = Rant.timeline(current_user).order("created_at DESC").page(params[:page] || 1).per(10)
+    else
+    @rants= Rant.all.order("created_at DESC").page(params[:page] || 1).per(10)
+    end
     @rant = Rant.new
     @users=User.all
-    
+
   end
 
   def show
