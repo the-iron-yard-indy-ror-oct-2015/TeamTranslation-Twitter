@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
     @session = UserSession.new(session_params)
     if @session.save
-      redirect_to users_path, notice: "You're logged in. Rant away!"
+      redirect_to rants_path, notice: "You're logged in. Rant away!"
     else
       flash[:error] = "Wrong Username or Password."
       redirect_to rants_path

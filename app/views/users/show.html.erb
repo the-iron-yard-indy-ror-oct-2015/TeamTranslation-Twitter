@@ -19,7 +19,7 @@
       <br>
       <p><a href="<%= user_path rant.user %>"><%= rant.user.name %></a> @ <%=rant.user.username%>   Posted <%= time_ago_in_words(rant.created_at) %> ago</p>
       <p><%= rant.content %></p>
-      <p><%= rant.user.followers.count %> Followers  <%= rant.user.followeds.count %> Following</p><br>
+      <p><%= rant.user.follower_relationships.count %> Followers  <%= rant.user.followed_relationships.count %> Following</p><br>
         <% if current_user && @user != current_user %>
           <% if current_user.following? @user %>
             <%= form_tag relationship_path, method: :delete do %>
@@ -41,6 +41,15 @@
       <p><%= @user.followers.count %> Followers <%= @user.followeds.count %> Following</p>
       <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
       <br>
+      <br>
+    <h3>Followers </h3>
+  <% @user.followers.each do |u|%>
+      <p><%=link_to u.name, user_path(u) %></p>
+      <% end %>
+    <h3>Following</h3>
+  <% @user.followeds.each do |u|%>
+    <p> <%= link_to u.name, user_path(u) %></p>
+    <% end %>
   </div><br>
 </div>
 <%= paginate @rants %>

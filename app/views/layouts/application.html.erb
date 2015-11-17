@@ -14,7 +14,7 @@
           <p id= "title"> RAGE RANT</p>
           <div class = "row col-xs-12">
             <% if @current_user%>
-              <h5>Welcome, <%=link_to @current_user.name, users_path(current_user)%> !</h5>
+              <h5>Welcome, <%=link_to @current_user.name, user_path(@current_user)%> !</h5>
               <%= link_to "Home", root_url, :class => "btn btn-medium btn-primary" %>
               <%= link_to "Log out",  sessions_destroy_path(@current_user),method: :delete, :class => "btn btn-medium btn-primary" %>
             <%else%>

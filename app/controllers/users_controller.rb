@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def new
     if current_user
-      redirect_to friends_path
+      redirect_to user_path
     else
       @user =User.new
     end
