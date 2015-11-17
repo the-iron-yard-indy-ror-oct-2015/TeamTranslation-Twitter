@@ -21,7 +21,7 @@
  }
 
  .jumbotron {
-    background-image: url(yelling.jpg);
+    background-image:url(image_path('yelling.jpg'));
     background-size: 120% 120%;
     height: 80vh;
     text-align: right;
@@ -49,5 +49,5 @@
  }
 
  .panel_right{
-   
+
  }
