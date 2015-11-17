@@ -39,7 +39,10 @@
     <h3>Profile Info</h3>
       <p><%=@user.name %> has made <%= @user.rants.size %> rants</p>
       <p><%= @user.followers.count %> Followers <%= @user.followeds.count %> Following</p>
-      <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
+        <% if @user.rants.first.content %>
+          <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
+          <%else%>
+        <%end%>
       <br>
       <br>
     <h3>Followers </h3>
