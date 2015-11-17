@@ -1,6 +1,15 @@
-<h1>Public Rants </h1>
-
-
+<h1 id= "header">Rants </h1>
+<% if current_user %>
+  <div class="panel_left">
+    <h3>Rant your Rage</h3>
+      <%= bootstrap_form_for @rant do |f|%>
+    <div class="control-group">
+      <%= f.text_area :content, skip_label:true, :size => "100x5", :placeholder => "Rant away..." %>
+      <%= f.submit "Rant!", method: :post %>
+    </div>
+      <% end %>
+  </div>
+<% end %>
 <% @rants.each do |rant| %>
   <br><br><p><a href="<%= user_path rant.user %>"><%= rant.user.name %></a>
   @<%= rant.user.username %></p>
