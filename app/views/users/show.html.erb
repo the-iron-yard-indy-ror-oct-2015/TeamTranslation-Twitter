@@ -10,46 +10,46 @@
   </div>
 <% end %>
 
-<div class="panel left">
-    <h1>Your Rage Page</h1>
+<h1><%=@user.name%>'s Rage Page</h1>
+<div class="row">
+  <div class="panel_left col-xs-12 col-md-8">
     <br>
-
-    <div>
-      <%= link_to "Public Rants", rants_path %>
-      <%= link_to "My Rant Timeline", friends_path %>
-    </div>
-
-    <div>
-      <h4>Profile Info</h4>
-        <p><%=@user.name %> has made <%= @user.rants.size %> rants</p>
-        <p><%= @user.followers.count %> Followers <%= @user.followeds.count %> Following</p>
-        <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
-        <br>
-    </div><br>
-
-    <h3>Your Rants</h3>
+    <h4>Your Rants</h4>
     <% @rants.each do |rant| %>
-      <br>
       <br>
       <p><a href="<%= user_path rant.user %>"><%= rant.user.name %></a> @ <%=rant.user.username%>   Posted <%= time_ago_in_words(rant.created_at) %> ago</p>
       <p><%= rant.content %></p>
-      <span><%= rant.user.followers.count %> Followers</span>
-      <span><%= rant.user.followeds.count %> Following</span><br>
-
-      <% if current_user && @user != current_user %>
-        <% if current_user.following? @user %>
-          <%= form_tag relationship_path, method: :delete do %>
-            <%= submit_tag "Unfollow" %>
-            <% end %>
-        <% else %>
-          <%= form_for @relationship do %>
-            <%= hidden_field_tag :followed_id, @user.id %>
-            <%= submit_tag "Follow" %>
+      <p><%= rant.user.follower_relationships.count %> Followers  <%= rant.user.followed_relationships.count %> Following</p><br>
+        <% if current_user && @user != current_user %>
+          <% if current_user.following? @user %>
+            <%= form_tag relationship_path, method: :delete do %>
+              <%= submit_tag "Unfollow" %>
+              <% end %>
+            <% else %>
+            <%= form_for @relationship do %>
+              <%= hidden_field_tag :followed_id, @user.id %>
+              <%= submit_tag "Follow" %>
+              <% end %>
             <% end %>
         <% end %>
       <% end %>
+      <br>
+  </div>
+  <div class="panel_right col-xs-12 col-md-4">
+    <h3>Profile Info</h3>
+      <p><%=@user.name %> has made <%= @user.rants.size %> rants</p>
+      <p><%= @user.followers.count %> Followers <%= @user.followeds.count %> Following</p>
+      <p><%= @user.name %>'s first rant: <%= @user.rants.first.content %></p>
+      <br>
+      <br>
+    <h3>Followers </h3>
+  <% @user.followers.each do |u|%>
+      <p><%=link_to u.name, user_path(u) %></p>
+      <% end %>
+    <h3>Following</h3>
+  <% @user.followeds.each do |u|%>
+    <p> <%= link_to u.name, user_path(u) %></p>
     <% end %>
-    <br>
-
+  </div><br>
 </div>
 <%= paginate @rants %>
