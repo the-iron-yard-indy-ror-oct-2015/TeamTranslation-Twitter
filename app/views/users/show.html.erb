@@ -22,7 +22,7 @@
       <p><%= rant.user.follower_relationships.count %> Followers  <%= rant.user.followed_relationships.count %> Following</p><br>
         <% if current_user && @user != current_user %>
           <% if current_user.following? @user %>
-            <%= form_tag relationship_path, method: :delete do %>
+            <%= form_tag relationship_path(current_user.relate(@user)), method: :delete do %>
               <%= submit_tag "Unfollow" %>
               <% end %>
             <% else %>
